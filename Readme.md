@@ -1,1 +1,1 @@
-Atividades, exercícios e challenges propostos pela Alura.
+Este repositório reúne atividades práticas, exercícios resolvidos e aprendizados adquiridos durante meus estudos na plataforma Alura. O objetivo é consolidar o conhecimento adquirido e acompanhar meu progresso nos cursos de tecnologia.
