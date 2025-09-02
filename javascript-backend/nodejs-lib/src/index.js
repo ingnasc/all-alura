@@ -1,3 +1,6 @@
+// criar um array com as palavras
+// contar as ocorrências
+// montar um objeto com o resultado
 const fs = require('fs');
 
 const caminhoArquivo = process.argv;
@@ -5,16 +8,15 @@ const link = caminhoArquivo[2];
 
 //como é um arquivo de texto, tem que passar o encode também
 fs.readFile(link, 'utf-8', (erro, texto) => {
-    quebraEmParagrafos(texto);
-    // verificaPalavrasDuplicadas(texto);
+    if (erro){
+        console.log('Qual é o erro?', erro.code);
+        return;
+    }
+    contaPalavras(texto);
 })
 
-// criar um array com as palavras
-// contar as ocorrências
-// montar um objeto com o resultado
-
-function quebraEmParagrafos(texto) {
-    const paragrafos = texto.toLowerCase().split('\n'); //encadeando métodos
+function contaPalavras(texto) {
+    const paragrafos = extraiParagrafos(texto);
     const contagem = paragrafos.flatMap((paragrafo) =>{
         if(!paragrafo) return [];
         return verificaPalavrasDuplicadas(paragrafo);
@@ -22,6 +24,11 @@ function quebraEmParagrafos(texto) {
 
     console.log(contagem);
 }
+
+function extraiParagrafos(texto) {
+    return texto.toLowerCase().split('\n'); //encadeando métodos
+}
+
 
 function limpaPalavras (palavra) {
   return palavra.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
