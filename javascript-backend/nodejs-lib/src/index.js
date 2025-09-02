@@ -8,11 +8,13 @@ const link = caminhoArquivo[2];
 
 //como é um arquivo de texto, tem que passar o encode também
 fs.readFile(link, 'utf-8', (erro, texto) => {
-    if (erro){
-        console.log('Qual é o erro?', erro.code);
-        return;
+    try {
+        if (erro) throw erro
+        contaPalavras(texto);
+    } catch (erro) {
+        if (erro.code === 'ENOENT') console.log('erro esperado');
+        else console.log('outro erro');
     }
-    contaPalavras(texto);
 })
 
 function contaPalavras(texto) {
